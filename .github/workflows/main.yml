@@ -1,9 +1,9 @@
 name: Deploy to Server
 
-on:
-  push:
-    branches:
-      - main  # Triggera il workflow solo su push al branch 'main'
+#on:
+#  push:
+#    branches:
+#      - main  # Triggera il workflow solo su push al branch 'main'
 
 jobs:
   deploy:
