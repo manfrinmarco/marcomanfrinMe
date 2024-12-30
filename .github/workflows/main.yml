@@ -22,7 +22,7 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         
         # Sostituisci $SERVER_HOST con l'hostname o l'IP del server
-        HOST="192.168.188.87"  # Modifica questa riga con il tuo server
+        HOST="78.134.42.146"  # Modifica questa riga con il tuo server
         ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
         
         # Assicurati che la chiave SSH sia caricata
