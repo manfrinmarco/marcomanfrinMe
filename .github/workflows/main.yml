@@ -3,23 +3,38 @@ name: Deploy to Server
 on:
   push:
     branches:
-      - main
+      - main  # Triggera il workflow solo su push al branch 'main'
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Usa un runner Ubuntu per eseguire il job
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    # Passaggio 1: Check out il codice dal repository
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Deploy to server
-        uses: appleboy/ssh-action@v0.1.7
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          passphrase: ${{ secrets.SERVER_SSH_PASSPHRASE }}
-          script: |
-            cd /path/to/your/repository
-            git pull origin master
+    # Passaggio 2: Impostazione della chiave SSH per la connessione al server
+    - name: Add SSH key
+      run: |
+        mkdir -p ~/.ssh
+        echo "$SERVER_SSH_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts  # Aggiungi l'host alla lista dei conosciuti
+        ssh-add ~/.ssh/id_rsa
+        ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 $SERVER_USER@$SERVER_HOST "echo 'SSH connection successful'"
+
+    # Passaggio 3: Esegui il pull dal repository sul server
+    - name: Pull latest changes on the server
+      run: |
+        ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o ConnectTimeout=10 $SERVER_USER@$SERVER_HOST "
+          cd /path/to/your/repository &&
+          git pull origin main &&
+          echo 'Pull completed successfully'
+        "
+
+    # Passaggio 4: Esegui qualsiasi altro comando necessario sul server
+    # Ad esempio, per riavviare un servizio o eseguire uno script:
+    - name: Restart server service (optional)
+      run: |
+        ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o ConnectTimeout=10 $SERVER_USER@$SERVER_HOST "sudo systemctl restart your-service-name"
