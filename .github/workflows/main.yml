@@ -20,8 +20,15 @@ jobs:
         mkdir -p ~/.ssh
         echo "$SERVER_SSH_KEY" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts  # Aggiungi l'host alla lista dei conosciuti
+        
+        # Aggiungi l'host alla lista dei conosciuti
+        ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
+        
+        # Assicurati che la chiave SSH sia caricata
+        eval "$(ssh-agent -s)"
         ssh-add ~/.ssh/id_rsa
+        
+        # Test della connessione SSH
         ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 $SERVER_USER@$SERVER_HOST "echo 'SSH connection successful'"
 
     # Passaggio 3: Esegui il pull dal repository sul server
