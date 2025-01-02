@@ -358,37 +358,39 @@ h3{
     border-radius: 5px;
 }
 
-/* ----- PROJECTS BOX ----- */
-.project-container{
+/* ----- workS BOX ----- */
+.work-container{
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
 }
-.project-box{
+.work-box{
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 30%;
-    height: 250px;
+    width: 45%;
+    height: 350px;
     background: var(--color-white);
     border-radius: 20px;
     box-shadow: 1px 8px 10px 2px var(--first-shadow-color);
     overflow: hidden;
 }
-.project-box>i{
+.work-box>i{
     font-size: 50px;
     color: #00B5E7;
     margin-bottom: 25px;
 }
-.project-box label{
+.work-box label{
     font-size: 15px;
     color: #777;
+    text-align: justify;  /* Justifies the text */
+    margin: 0 25px;       /* Optional: Adds some margin to avoid touching the edges */
 }
-.project-box::after, .contact-info::after{
+.work-box::after, .contact-info::after{
     content: "";
     position: absolute;
     bottom: -100%;
@@ -398,13 +400,13 @@ h3{
     transition: .4s;
     z-index: 1;
 }
-.project-box:hover.project-box::after,
+.work-box:hover.work-box::after,
 .contact-info:hover.contact-info::after{
     bottom: 0;
 }
-.project-box:hover.project-box i,
-.project-box:hover.project-box>h3,
-.project-box:hover.project-box>label{
+.work-box:hover.work-box i,
+.work-box:hover.work-box>h3,
+.work-box:hover.work-box>label{
     color: var(--color-white);
     z-index: 2;
 }
@@ -502,7 +504,7 @@ footer{
     flex-direction: column;
     row-gap: 30px;
     background: #F8F8F8;
-    padding-block: 40px 60px;
+    padding-block: 100px 60px;
 }
 .top-footer p{
     font-size: 25px;
