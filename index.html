@@ -8,10 +8,10 @@
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 
         <!-- --------- STYLE ---------- -->
-        <link rel="stylesheet" href="assets/css/style.css" />
-        <link rel="stylesheet" href="assets/css/table.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/responsive.css" />
 
-        <title>About me | Manfrin Marco</title>
+        <title>Web Dev project, Manfrin Marco</title>
     </head>
       
     <body>
@@ -56,15 +56,12 @@
         <!-- --------------- HOME --------------- --> 
         <section class="featured-box" id="home">
             <div class="featured-text">
-                <div class="featured-text-card">
-                    <span>Marco Manfrin</span>
-                </div>
               <div class="featured-name">
                   <p>I'm a <span class="typedText"></span></p>
               </div>
               <div class="featured-text-info">
                   <p>
-                    I am a student at Epicode University and a developer in the field of industrial robotics and automation at Sistec AM
+                    I am a student at Epicode University and a developer in the field of industrial robotics and automation at Sistec AM.
                   </p>
               </div>
               <div class="social_icons">
@@ -75,7 +72,7 @@
             </div>
             <div class="featured-image">
               <div class="image">
-                  <img src="assets/images/avatar.png" alt="avatar">
+                  <img src="images/avatar.png" alt="avatar">
               </div>
             </div>
         </section>
@@ -192,6 +189,12 @@
                       <div class="text-area">
                           <textarea placeholder="Message"></textarea>
                       </div>
+                      <div>
+                        <div id="fullNameError" class="error-message" style="display:none;"></div>
+                        <div id="emailError" class="error-message" style="display:none;"></div>
+                        <div id="messageError" class="error-message" style="display:none;"></div>
+                        <div id="formSuccess" class="success-message" style="display:none;"></div>
+                      </div>
                       <div class="form-button">
                           <button class="btn">Send <i class="uil uil-message"></i></button>
                       </div>
@@ -210,10 +213,8 @@
 
     <!-- ----- TYPING JS Link ----- -->
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-    <!-- ----- SCROLL REVEAL JS Link----- -->
-    <script src="https://unpkg.com/scrollreveal"></script>
     <!-- ----- MAIN JS ----- -->
-    <script src="assets/js/main.js"></script>
-
+    <script src="js/main.js"></script>
+    <script src="js/validate.js"></script>
   </body>
 </html>
